@@ -7,15 +7,11 @@ import com.stack.DynamicStack;
 import com.stack.IStack;
 
 public class Main {
-    public static void main(String[] args) {
-        try {
-            DynamicStack<String> stringDynamicStack = new DynamicStack<>();
-            ArrayStack<String> stringArrayStack = new ArrayStack<>();
-            runStringStackOperations(stringDynamicStack);
-            runStringStackOperations(stringArrayStack);
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
+    public static void main(String[] args) throws EmptyStackException {
+        DynamicStack<String> stringDynamicStack = new DynamicStack<>();
+        ArrayStack<String> stringArrayStack = new ArrayStack<>();
+        runStringStackOperations(stringDynamicStack);
+        runStringStackOperations(stringArrayStack);
     }
 
     private static void runStringStackOperations(IStack<String> stack) throws EmptyStackException {

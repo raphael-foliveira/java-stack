@@ -2,56 +2,68 @@ package com.stack;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestArrayStack {
-  @Test
-  public void shouldPushAnIntegerToTheStack() {
-    ArrayStack<Integer> stack = new ArrayStack<>();
+  private ArrayStack<Integer> stack;
 
-    // stack must be empty and head must be null when initialized
+  @Before
+  public void setUp() {
+    stack = new ArrayStack<>();
+  }
+
+  @Test
+  public void shouldStartWithAnEmptyStack() {
     assertTrue(stack.isEmpty());
     assertNull(stack.getHead());
+  }
 
+  @Test
+  public void shouldPushAndGetHead() {
     stack.push(10);
+    assertFalse(stack.isEmpty());
     assertEquals(Integer.valueOf(10), stack.getHead());
   }
 
   @Test
-  public void shouldPopAnIntegerFromTheStack() throws EmptyStackException {
-    int expected = 10;
-    ArrayStack<Integer> stack = new ArrayStack<>(expected);
-
-    // stack must be populated since we passed an integer in the constructor
-    assertFalse(stack.isEmpty());
-    assertEquals(Integer.valueOf(expected), stack.getHead());
-
-    int actual = stack.pop();
-    assertEquals(expected, actual);
-  }
-
-  @Test
-  public void shouldReturnTrueWhenCallingIsEmptyOnAnEmptyStack() {
-    ArrayStack<Integer> stack = new ArrayStack<>();
+  public void shouldPopAnElement() throws EmptyStackException {
+    stack.push(10);
+    assertEquals(Integer.valueOf(10), stack.pop());
     assertTrue(stack.isEmpty());
   }
 
   @Test
-  public void shouldReturnFalseWhenCallingIsEmptyOnANonEmptyStack() {
-    ArrayStack<Integer> stack = new ArrayStack<>(10);
-    assertFalse(stack.isEmpty());
+  public void shouldPushAndPopMultipleItems() throws EmptyStackException {
+    pushItems(stack, 10);
+
+    for (int i = 9; i >= 0; i--) {
+      assertEquals(Integer.valueOf(i), stack.pop());
+    }
+
+    assertTrue(stack.isEmpty());
   }
 
   @Test
-  public void shouldReturnNullWhenCallingGetHeadOnAnEmptyStack() {
-    ArrayStack<Integer> stack = new ArrayStack<>();
+  public void shouldReturnNullForGetHeadOnEmptyStack() {
     assertNull(stack.getHead());
   }
 
   @Test
-  public void shouldReturnHeadValueWhenCallingGetHeadOnANonEmptyStack() {
-    int expected = 10;
-    ArrayStack<Integer> stack = new ArrayStack<>(expected);
-    assertEquals(Integer.valueOf(expected), stack.getHead());
+  public void shouldReturnTrueForIsEmptyOnNewStack() {
+    assertTrue(stack.isEmpty());
+  }
+
+  @Test
+  public void shouldReturnFalseForIsEmptyOnNonEmptyStack() {
+    stack.push(10);
+    assertFalse(stack.isEmpty());
+  }
+
+  // Helper method to push multiple items
+  private void pushItems(ArrayStack<Integer> stack, int count) {
+    for (int i = 0; i < count; i++) {
+      stack.push(i);
+    }
   }
 }

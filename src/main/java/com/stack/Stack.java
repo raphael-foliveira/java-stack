@@ -1,6 +1,6 @@
 package com.stack;
 
-public interface IStack<T> {
+public interface Stack<T> {
   void push(T val);
 
   T pop() throws EmptyStackException;

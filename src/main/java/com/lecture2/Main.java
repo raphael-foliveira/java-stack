@@ -4,7 +4,7 @@ import com.stack.EmptyStackException;
 
 import com.stack.ArrayStack;
 import com.stack.DynamicStack;
-import com.stack.IStack;
+import com.stack.Stack;
 
 public class Main {
     public static void main(String[] args) throws EmptyStackException {
@@ -14,7 +14,7 @@ public class Main {
         runStringStackOperations(stringArrayStack);
     }
 
-    private static void runStringStackOperations(IStack<String> stack) throws EmptyStackException {
+    private static void runStringStackOperations(Stack<String> stack) throws EmptyStackException {
         System.out.println("Runnin string stack operations");
 
         System.out.println("Is empty? " + stack.isEmpty());

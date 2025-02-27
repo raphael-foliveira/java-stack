@@ -1,6 +1,6 @@
 package com.stack;
 
-public class DynamicStack<T> implements IStack<T> {
+public class DynamicStack<T> implements Stack<T> {
   private class StackItem {
     private T value;
     private StackItem next;

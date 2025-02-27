@@ -1,18 +1,19 @@
 package com.stack;
 
-public class ArrayStack<T> implements IStack<T> {
+public class ArrayStack<T> implements Stack<T> {
+  private int DEFAULT_CAPACITY = 5;
   private Object[] arr;
   private int capacity;
   private int head;
 
   public ArrayStack() {
-    capacity = 2;
+    capacity = DEFAULT_CAPACITY;
     arr = new Object[capacity];
     head = -1;
   }
 
   public ArrayStack(T headValue) {
-    capacity = 2;
+    capacity = DEFAULT_CAPACITY;
     arr = new Object[capacity];
     head = 0;
     arr[head] = headValue;
@@ -31,7 +32,9 @@ public class ArrayStack<T> implements IStack<T> {
     int newCapacity = capacity * 2;
     Object[] newArr = new Object[newCapacity];
 
-    System.arraycopy(arr, 0, newArr, 0, capacity);
+    for (int i = 0; i < capacity; i++) {
+      newArr[i] = arr[i];
+    }
 
     arr = newArr;
     capacity = newCapacity;

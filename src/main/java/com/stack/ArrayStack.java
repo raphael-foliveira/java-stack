@@ -1,7 +1,7 @@
 package com.stack;
 
 public class ArrayStack<T> implements Stack<T> {
-  private int DEFAULT_CAPACITY = 5;
+  private final int DEFAULT_CAPACITY = 5;
   private Object[] arr;
   private int capacity;
   private int head;
@@ -59,6 +59,6 @@ public class ArrayStack<T> implements Stack<T> {
   }
 
   public boolean isEmpty() {
-    return head == -1;
+    return head < 0;
   }
 }
